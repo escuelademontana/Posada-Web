@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 
 const heroSlides = [
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1600&q=80",
+  "/assets/hero/hero-1.jpg",
+  "/assets/hero/hero-2.jpg",
+  "/assets/hero/hero-3.jpg",
+  "/assets/hero/hero-4.jpg",
 ];
 
 const rooms = [
