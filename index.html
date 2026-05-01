@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>La Posada | Hostería de montaña en San Martín de los Andes</title>
+    <meta
+      name="description"
+      content="La Posada, en Estancia Miralejos, te espera con naturaleza, calma y una experiencia auténtica de montaña cerca de San Martín de los Andes."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a
+      class="floating-whatsapp"
+      href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Consultar por WhatsApp"
+    >
+      <span>WhatsApp</span>
+    </a>
+
+    <header class="hero" id="inicio">
+      <div class="hero__slides" aria-hidden="true">
+        <div
+          class="hero__slide is-active"
+          style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');"
+        ></div>
+        <div
+          class="hero__slide"
+          style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80');"
+        ></div>
+        <div
+          class="hero__slide"
+          style="background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1600&q=80');"
+        ></div>
+      </div>
+
+      <div class="hero__overlay"></div>
+
+      <nav class="topbar">
+        <div class="brand">
+          <span class="brand__eyebrow">Estancia Miralejos</span>
+          <span class="brand__name">La Posada</span>
+        </div>
+        <a
+          class="topbar__cta"
+          href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
+          target="_blank"
+          rel="noreferrer"
+        >
+          Consultar disponibilidad
+        </a>
+      </nav>
+
+      <div class="hero__content container reveal">
+        <p class="eyebrow">Hostería de montaña en San Martín de los Andes</p>
+        <h1>La Posada. Un lugar en la montaña para conectar con la naturaleza</h1>
+        <p class="hero__lead">
+          En la Estancia Miralejos, a 30 minutos de San Martín de los Andes, te
+          esperamos con vistas únicas, tranquilidad y una experiencia auténtica
+          en la Patagonia.
+        </p>
+        <a
+          class="button button--primary"
+          href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
+          target="_blank"
+          rel="noreferrer"
+        >
+          Consultar disponibilidad
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="section section--light" id="habitaciones">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Descanso con identidad</p>
+            <h2>Habitaciones pensadas para descansar</h2>
+            <p>
+              Nuestras habitaciones combinan calidez, vistas abiertas y la
+              tranquilidad del entorno natural. Cada espacio está diseñado para
+              que puedas desconectar, descansar y disfrutar del ritmo de la
+              montaña.
+            </p>
+          </div>
+
+          <div class="room-grid">
+            <article class="room-card reveal">
+              <div class="room-carousel" data-carousel>
+                <div class="room-carousel__track">
+                  <img
+                    class="room-carousel__slide is-active"
+                    src="assets/rooms/doble-1.jpg"
+                    alt="Habitación doble con cama matrimonial y terminaciones en madera"
+                  />
+                  <img
+                    class="room-carousel__slide"
+                    src="assets/rooms/doble-2.jpg"
+                    alt="Detalle de la cama y textiles de la habitación doble"
+                  />
+                  <img
+                    class="room-carousel__slide"
+                    src="assets/rooms/doble-3.jpg"
+                    alt="Habitación doble con camas y luz cálida de montaña"
+                  />
+                  <img
+                    class="room-carousel__slide"
+                    src="assets/rooms/doble-4.jpg"
+                    alt="Vista abierta a la montaña desde la habitación doble"
+                  />
+                </div>
+                <button
+                  class="room-carousel__nav room-carousel__nav--prev"
+                  type="button"
+                  aria-label="Imagen anterior de la habitación doble"
+                  data-carousel-prev
+                >
+                  ‹
+                </button>
+                <button
+                  class="room-carousel__nav room-carousel__nav--next"
+                  type="button"
+                  aria-label="Imagen siguiente de la habitación doble"
+                  data-carousel-next
+                >
+                  ›
+                </button>
+                <div class="room-carousel__dots" aria-label="Galería de la habitación doble">
+                  <button class="room-carousel__dot is-active" type="button" aria-label="Ver imagen 1" data-carousel-dot="0"></button>
+                  <button class="room-carousel__dot" type="button" aria-label="Ver imagen 2" data-carousel-dot="1"></button>
+                  <button class="room-carousel__dot" type="button" aria-label="Ver imagen 3" data-carousel-dot="2"></button>
+                  <button class="room-carousel__dot" type="button" aria-label="Ver imagen 4" data-carousel-dot="3"></button>
+                </div>
+              </div>
+              <div class="room-card__body">
+                <h3>Habitaciones dobles</h3>
+                <p>
+                  Ideales para parejas o escapadas tranquilas. Con baño en
+                  suite y vistas al entorno natural.
+                </p>
+              </div>
+            </article>
+
+            <article class="room-card reveal">
+              <div class="room-carousel" data-carousel>
+                <div class="room-carousel__track">
+                  <img
+                    class="room-carousel__slide is-active"
+                    src="assets/rooms/cuadruple-1.jpg"
+                    alt="Suite cuádruple con cama principal y vista a la montaña"
+                  />
+                  <img
+                    class="room-carousel__slide"
+                    src="assets/rooms/cuadruple-2.jpg"
+                    alt="Detalle cálido de la cama principal de la suite cuádruple"
+                  />
+                  <img
+                    class="room-carousel__slide"
+                    src="assets/rooms/cuadruple-3.jpg"
+                    alt="Habitación principal de la suite cuádruple con ventana y vista"
+                  />
+                  <img
+                    class="room-carousel__slide"
+                    src="assets/rooms/cuadruple-4.jpg"
+                    alt="Vista abierta a la montaña desde la suite cuádruple"
+                  />
+                  <img
+                    class="room-carousel__slide"
+                    src="assets/rooms/cuadruple-6.jpg"
+                    alt="Dormitorio secundario de la suite cuádruple"
+                  />
+                  <img
+                    class="room-carousel__slide"
+                    src="assets/rooms/cuadruple-7.jpg"
+                    alt="Segundo ambiente de descanso en la suite cuádruple"
+                  />
+                  <img
+                    class="room-carousel__slide"
+                    src="assets/rooms/cuadruple-8.jpg"
+                    alt="Baño de la suite cuádruple con doble bacha"
+                  />
+                </div>
+                <button
+                  class="room-carousel__nav room-carousel__nav--prev"
+                  type="button"
+                  aria-label="Imagen anterior de la suite cuádruple"
+                  data-carousel-prev
+                >
+                  ‹
+                </button>
+                <button
+                  class="room-carousel__nav room-carousel__nav--next"
+                  type="button"
+                  aria-label="Imagen siguiente de la suite cuádruple"
+                  data-carousel-next
+                >
+                  ›
+                </button>
+                <div class="room-carousel__dots" aria-label="Galería de la suite cuádruple">
+                  <button class="room-carousel__dot is-active" type="button" aria-label="Ver imagen 1" data-carousel-dot="0"></button>
+                  <button class="room-carousel__dot" type="button" aria-label="Ver imagen 2" data-carousel-dot="1"></button>
+                  <button class="room-carousel__dot" type="button" aria-label="Ver imagen 3" data-carousel-dot="2"></button>
+                  <button class="room-carousel__dot" type="button" aria-label="Ver imagen 4" data-carousel-dot="3"></button>
+                  <button class="room-carousel__dot" type="button" aria-label="Ver imagen 5" data-carousel-dot="4"></button>
+                  <button class="room-carousel__dot" type="button" aria-label="Ver imagen 6" data-carousel-dot="5"></button>
+                  <button class="room-carousel__dot" type="button" aria-label="Ver imagen 7" data-carousel-dot="6"></button>
+                </div>
+              </div>
+              <div class="room-card__body">
+                <h3>Suites cuádruples</h3>
+                <p>
+                  Espacios amplios y funcionales para hasta 4 personas,
+                  pensados para familias, grupos o estadías más largas. Cuentan
+                  con dos habitaciones y un baño.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--earth" id="servicios">
+        <div class="container services-layout">
+          <div class="service-block reveal">
+            <p class="eyebrow">Comodidad simple</p>
+            <h2>Servicios incluidos</h2>
+            <p>
+              Buscamos que tu estadía sea cómoda y simple desde el primer
+              momento.
+            </p>
+            <ul class="icon-list">
+              <li>
+                <img src="assets/icons/desayuno.svg" alt="" aria-hidden="true" />
+                <span>Desayuno</span>
+              </li>
+              <li>
+                <img src="assets/icons/mucama.svg" alt="" aria-hidden="true" />
+                <span>Servicio de limpieza</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/espacios-comunes.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span>Espacios comunes</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/entorno-natural.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span>Entorno natural con senderos</span>
+              </li>
+              <li>
+                <img
+                  src="assets/icons/estacionamiento.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
+                <span>Estacionamiento</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="service-block service-block--accent reveal">
+            <p class="eyebrow">A medida de tu viaje</p>
+            <h2>Experiencias opcionales</h2>
+            <p>
+              Si querés llevar tu experiencia un paso más allá, podés sumar:
+            </p>
+            <div class="experience-grid">
+              <article class="experience-card">
+                <img
+                  src="assets/experiences/transfer-4x4.jpg"
+                  alt="Vehículo 4x4 atravesando un camino nevado en la montaña"
+                />
+                <div class="experience-card__body">
+                  <h3>Servicio de transfer 4x4</h3>
+                  <p>
+                    Una forma cómoda y segura de moverte por caminos de montaña
+                    y llegar a cada experiencia con tranquilidad.
+                  </p>
+                </div>
+              </article>
+
+              <article class="experience-card">
+                <img
+                  src="assets/experiences/cena.jpg"
+                  alt="Cena servida con plato principal en un ambiente cálido"
+                />
+                <div class="experience-card__body">
+                  <h3>Servicio de cena</h3>
+                  <p>
+                    Sabores caseros y una propuesta cálida para cerrar el día
+                    sin salir del entorno de la posada.
+                  </p>
+                </div>
+              </article>
+
+              <article class="experience-card">
+                <img
+                  src="assets/experiences/caminata.jpg"
+                  alt="Personas caminando por un sendero rodeado de bosque"
+                />
+                <div class="experience-card__body">
+                  <h3>Caminatas</h3>
+                  <p>
+                    Senderos y recorridos para descubrir el bosque, respirar
+                    aire puro y conectar con la montaña a otro ritmo.
+                  </p>
+                </div>
+              </article>
+            </div>
+            <p class="service-note">
+              Te ayudamos a organizar cada detalle para que solo tengas que
+              disfrutar.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--light" id="ubicacion">
+        <div class="container split-layout">
+          <div class="split-layout__media reveal">
+            <img
+              src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1400&q=80"
+              alt="Paisaje de montaña y bosque patagónico"
+            />
+          </div>
+
+          <div class="split-layout__content reveal">
+            <p class="eyebrow">El entorno</p>
+            <h2>Naturaleza, tranquilidad y aventura</h2>
+            <p>
+              Estamos ubicados en la Estancia Miralejos, un barrio privado a 30
+              minutos de San Martín de los Andes. Además contamos con un camino
+              interno, que no pasa por el pueblo, a 30 minutos del Cerro
+              Chapelco. Un entorno único donde el bosque, la montaña y el
+              silencio son protagonistas.
+            </p>
+            <p>
+              Desde la posada podés acceder a senderos, miradores y paisajes
+              abiertos.
+            </p>
+
+            <div class="map-placeholder" aria-label="Mapa de ubicación">
+              <div>
+                <span class="map-placeholder__label">Ubicación</span>
+                <strong>Estancia Miralejos</strong>
+                <p>San Martín de los Andes, Neuquén, Argentina</p>
+              </div>
+              <a
+                class="button button--secondary"
+                href="https://www.google.com/maps/search/San+Mart%C3%ADn+de+los+Andes+Estancia+Miralejos"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ver mapa
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--forest" id="actividades">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Todo el año</p>
+            <h2>Experiencias en la montaña todo el año</h2>
+            <p>
+              La montaña ofrece algo distinto en cada estación. Desde la posada
+              podés vivir la naturaleza de múltiples formas.
+            </p>
+          </div>
+
+          <div class="activities-grid">
+            <article class="activity-card reveal">
+              <span class="activity-card__season">Invierno</span>
+              <p>
+                A solo 30 minutos del Cerro Chapelco, ideal para esquí y
+                snowboard. También caminatas en la nieve y paisajes únicos.
+              </p>
+            </article>
+
+            <article class="activity-card reveal">
+              <span class="activity-card__season">Verano</span>
+              <p>
+                Senderismo, miradores, lagos y actividades al aire libre en un
+                entorno natural privilegiado.
+              </p>
+            </article>
+
+            <article class="activity-card reveal">
+              <span class="activity-card__season">Todo el año</span>
+              <p>
+                Espacios para descansar, reconectar y disfrutar del ritmo de la
+                montaña.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--cta" id="contacto">
+        <div class="container cta-card reveal">
+          <p class="eyebrow">Tu próxima escapada</p>
+          <h2>Viví una experiencia de Montaña en La Posada</h2>
+          <p>Escribinos y te ayudamos a planificar tu estadía.</p>
+          <a
+            class="button button--primary"
+            href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20por%20mi%20estad%C3%ADa%20en%20La%20Posada."
+            target="_blank"
+            rel="noreferrer"
+          >
+            Consultar por WhatsApp
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
