@@ -2,12 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const heroSlides = [
-  "/assets/hero/hero-1.jpg",
-  "/assets/hero/hero-2.jpg",
-  "/assets/hero/hero-3.jpg",
-  "/assets/hero/hero-4.jpg",
-];
+const headerSlides = ["/assets/header/header-2.jpg"];
 
 const rooms = [
   {
@@ -77,15 +72,15 @@ function useActiveSlide(length, intervalMs) {
   return [index, setIndex];
 }
 
-function HeroCarousel() {
-  const [activeIndex] = useActiveSlide(heroSlides.length, 5200);
+function ImageCarousel({ slides, intervalMs, className, slideClassName }) {
+  const [activeIndex] = useActiveSlide(slides.length, intervalMs);
 
   return (
-    <div className="hero__slides" aria-hidden="true">
-      {heroSlides.map((src, index) => (
+    <div className={className} aria-hidden="true">
+      {slides.map((src, index) => (
         <div
           key={src}
-          className={`hero__slide ${index === activeIndex ? "is-active" : ""}`}
+          className={`${slideClassName} ${index === activeIndex ? "is-active" : ""}`}
           style={{ backgroundImage: `url('${src}')` }}
         />
       ))}
@@ -150,6 +145,8 @@ function SectionHeading({ eyebrow, title, copy }) {
 }
 
 export default function Page() {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
   useEffect(() => {
     const elements = document.querySelectorAll(".reveal");
     const observer = new IntersectionObserver(
@@ -181,39 +178,76 @@ export default function Page() {
       </a>
 
       <header className="hero" id="inicio">
-        <HeroCarousel />
-        <div className="hero__overlay" />
-
-        <nav className="topbar">
-          <div className="brand">
-            <span className="brand__eyebrow">Estancia Miralejos</span>
-            <span className="brand__name">La Posada</span>
+        <div className="hero__media">
+          <ImageCarousel
+            slides={headerSlides}
+            intervalMs={0}
+            className="hero__slides hero__slides--single"
+            slideClassName="hero__slide"
+          />
+          <div className="hero__overlay hero__overlay--soft" />
+          <nav className="top-nav" aria-label="Secciones principales">
+            <div className={`top-nav__links top-nav__links--left ${isNavOpen ? "is-open" : ""}`} id="top-nav-links">
+              <a href="#habitaciones" onClick={() => setIsNavOpen(false)}>
+                Habitaciones
+              </a>
+              <a href="#servicios" onClick={() => setIsNavOpen(false)}>
+                Servicios
+              </a>
+            </div>
+            <a className="top-nav__brand" href="#inicio" aria-label="Volver al inicio">
+              <img src="/assets/logo.svg" alt="La Posada" />
+            </a>
+            <button
+              className="top-nav__mobile-brand"
+              type="button"
+              aria-label={isNavOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={isNavOpen}
+              aria-controls="top-nav-links"
+              onClick={() => setIsNavOpen((current) => !current)}
+            >
+              <img src="/assets/logo-reducido.svg" alt="La Posada" />
+            </button>
+            <div className={`top-nav__links top-nav__links--right ${isNavOpen ? "is-open" : ""}`}>
+              <a href="#experiencias" onClick={() => setIsNavOpen(false)}>
+                Experiencias
+              </a>
+              <a href="#ubicacion" onClick={() => setIsNavOpen(false)}>
+                Ubicación
+              </a>
+            </div>
+            <button
+              className="top-nav__toggle"
+              type="button"
+              aria-label={isNavOpen ? "Cerrar menú" : "Abrir menú"}
+              aria-expanded={isNavOpen}
+              aria-controls="top-nav-links"
+              onClick={() => setIsNavOpen((current) => !current)}
+            >
+              <span />
+              <span />
+              <span />
+            </button>
+          </nav>
+          <div className="hero__headline reveal is-visible">
+            <h1>
+              <span>Un lugar en la montaña para</span>
+              <span>conectar con la naturaleza</span>
+            </h1>
+            <p>
+              En la Estancia Miralejos, a 30 minutos de San Martín de los Andes, te esperamos con vistas únicas, tranquilidad y una experiencia auténtica en la Patagonia.
+            </p>
+            <a
+              className="button button--outline"
+              href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
+              target="_blank"
+              rel="noreferrer"
+            >
+              Consultar disponibilidad
+            </a>
           </div>
-          <a
-            className="topbar__cta"
-            href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
-            target="_blank"
-            rel="noreferrer"
-          >
-            Consultar disponibilidad
-          </a>
-        </nav>
-
-        <div className="hero__content container reveal">
-          <p className="eyebrow">Hostería de montaña en San Martín de los Andes</p>
-          <h1>La Posada. Un lugar en la montaña para conectar con la naturaleza</h1>
-          <p className="hero__lead">
-            En la Estancia Miralejos, a 30 minutos de San Martín de los Andes, te esperamos con vistas únicas, tranquilidad y una experiencia auténtica en la Patagonia.
-          </p>
-          <a
-            className="button button--primary"
-            href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
-            target="_blank"
-            rel="noreferrer"
-          >
-            Consultar disponibilidad
-          </a>
         </div>
+
       </header>
 
       <main>
@@ -255,7 +289,7 @@ export default function Page() {
               </ul>
             </div>
 
-            <div className="service-block service-block--accent reveal">
+            <div className="service-block service-block--accent reveal" id="experiencias">
               <p className="eyebrow">A medida de tu viaje</p>
               <h2>Experiencias opcionales</h2>
               <p>Si querés llevar tu experiencia un paso más allá, podés sumar:</p>
