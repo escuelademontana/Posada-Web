@@ -2,7 +2,15 @@
 
 import { useEffect, useState } from "react";
 
-const headerSlides = ["/assets/header/header-2.jpg"];
+const headerSlides = [{ src: "/assets/header/header-2.jpg", alt: "Vista del paisaje desde La Posada" }];
+
+const aboutSlides = [
+  { src: "/assets/header/header-1.jpg", alt: "La Posada entre árboles y ladera de montaña" },
+  { src: "/assets/header/header-3.jpg", alt: "Interior cálido con chimenea y vista abierta" },
+  { src: "/assets/header/header-4.jpg", alt: "Paisaje patagónico desde La Posada al atardecer" },
+  { src: "/assets/header/header-5.jpg", alt: "Chimenea encendida con vista al paisaje de la posada" },
+  { src: "/assets/header/header-6.jpg", alt: "Grupo disfrutando el atardecer en la terraza de La Posada" },
+];
 
 const rooms = [
   {
@@ -72,28 +80,62 @@ function useActiveSlide(length, intervalMs) {
   return [index, setIndex];
 }
 
-function ImageCarousel({ slides, intervalMs, className, slideClassName }) {
+function ImageCarousel({ slides, intervalMs, className, slideClassName, onOpen }) {
   const [activeIndex] = useActiveSlide(slides.length, intervalMs);
+  const normalizedSlides = slides.map((slide) => (typeof slide === "string" ? { src: slide, alt: "" } : slide));
+  const activeSlide = normalizedSlides[activeIndex];
 
   return (
-    <div className={className} aria-hidden="true">
-      {slides.map((src, index) => (
+    <div
+      className={className}
+      aria-hidden={onOpen ? undefined : true}
+      role={onOpen ? "button" : undefined}
+      tabIndex={onOpen ? 0 : undefined}
+      onClick={onOpen ? () => onOpen(activeSlide) : undefined}
+      onKeyDown={
+        onOpen
+          ? (event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                onOpen(activeSlide);
+              }
+            }
+          : undefined
+      }
+    >
+      {normalizedSlides.map((slide, index) => (
         <div
-          key={src}
+          key={slide.src}
           className={`${slideClassName} ${index === activeIndex ? "is-active" : ""}`}
-          style={{ backgroundImage: `url('${src}')` }}
+          style={{ backgroundImage: `url('${slide.src}')` }}
         />
       ))}
     </div>
   );
 }
 
-function RoomCarousel({ slides, title }) {
+function RoomCarousel({ slides, title, onOpen }) {
   const [activeIndex, setActiveIndex] = useActiveSlide(slides.length, 4200);
+  const activeSlide = slides[activeIndex];
 
   return (
     <div className="room-carousel">
-      <div className="room-carousel__track">
+      <div
+        className="room-carousel__track"
+        role={onOpen ? "button" : undefined}
+        tabIndex={onOpen ? 0 : undefined}
+        onClick={onOpen ? () => onOpen(activeSlide) : undefined}
+        onKeyDown={
+          onOpen
+            ? (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  onOpen(activeSlide);
+                }
+              }
+            : undefined
+        }
+      >
         {slides.map((slide, index) => (
           <img
             key={slide.src}
@@ -107,7 +149,10 @@ function RoomCarousel({ slides, title }) {
         className="room-carousel__nav room-carousel__nav--prev"
         type="button"
         aria-label={`Imagen anterior de ${title.toLowerCase()}`}
-        onClick={() => setActiveIndex((current) => (current - 1 + slides.length) % slides.length)}
+        onClick={(event) => {
+          event.stopPropagation();
+          setActiveIndex((current) => (current - 1 + slides.length) % slides.length);
+        }}
       >
         ‹
       </button>
@@ -115,7 +160,10 @@ function RoomCarousel({ slides, title }) {
         className="room-carousel__nav room-carousel__nav--next"
         type="button"
         aria-label={`Imagen siguiente de ${title.toLowerCase()}`}
-        onClick={() => setActiveIndex((current) => (current + 1) % slides.length)}
+        onClick={(event) => {
+          event.stopPropagation();
+          setActiveIndex((current) => (current + 1) % slides.length);
+        }}
       >
         ›
       </button>
@@ -126,7 +174,10 @@ function RoomCarousel({ slides, title }) {
             className={`room-carousel__dot ${index === activeIndex ? "is-active" : ""}`}
             type="button"
             aria-label={`Ver imagen ${index + 1} de ${title.toLowerCase()}`}
-            onClick={() => setActiveIndex(index)}
+            onClick={(event) => {
+              event.stopPropagation();
+              setActiveIndex(index);
+            }}
           />
         ))}
       </div>
@@ -146,6 +197,12 @@ function SectionHeading({ eyebrow, title, copy }) {
 
 export default function Page() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState(null);
+
+  const openLightbox = (image) => {
+    if (!image) return;
+    setLightboxImage(image);
+  };
 
   useEffect(() => {
     const elements = document.querySelectorAll(".reveal");
@@ -165,17 +222,43 @@ export default function Page() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (!lightboxImage) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setLightboxImage(null);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [lightboxImage]);
+
   return (
     <>
-      <a
-        className="floating-whatsapp"
-        href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
-        target="_blank"
-        rel="noreferrer"
-        aria-label="Consultar por WhatsApp"
-      >
-        WhatsApp
-      </a>
+      {lightboxImage ? (
+        <div className="image-lightbox" role="dialog" aria-modal="true" aria-label={lightboxImage.alt}>
+          <button
+            className="image-lightbox__backdrop"
+            type="button"
+            aria-label="Cerrar imagen ampliada"
+            onClick={() => setLightboxImage(null)}
+          />
+          <figure className="image-lightbox__dialog">
+            <img src={lightboxImage.src} alt={lightboxImage.alt} />
+            <figcaption>{lightboxImage.alt}</figcaption>
+          </figure>
+          <button
+            className="image-lightbox__close"
+            type="button"
+            aria-label="Cerrar imagen ampliada"
+            onClick={() => setLightboxImage(null)}
+          >
+            ×
+          </button>
+        </div>
+      ) : null}
 
       <header className="hero" id="inicio">
         <div className="hero__media">
@@ -184,6 +267,7 @@ export default function Page() {
             intervalMs={0}
             className="hero__slides hero__slides--single"
             slideClassName="hero__slide"
+            onOpen={openLightbox}
           />
           <div className="hero__overlay hero__overlay--soft" />
           <nav className="top-nav" aria-label="Secciones principales">
@@ -243,7 +327,7 @@ export default function Page() {
               target="_blank"
               rel="noreferrer"
             >
-              Consultar disponibilidad
+              CONSULTAR DISPONIBILIDAD
             </a>
           </div>
         </div>
@@ -251,6 +335,40 @@ export default function Page() {
       </header>
 
       <main>
+        <section className="section section--light" id="sobre-la-posada">
+          <div className="container about-layout">
+            <div className="about-layout__content reveal">
+              <p className="eyebrow">Sobre la Posada</p>
+              <h2>Una forma distinta de tomarse una pausa</h2>
+              <p>
+                Con solo seis habitaciones, la experiencia es íntima y sin masividad. Cada espacio invita a quedarse, a bajar el ritmo y a disfrutar del paisaje sin apuro.
+              </p>
+              <p>
+                Podés alojarte por habitación o reservar la posada completa, adaptándose tanto a escapadas personales como a estadías en grupo.
+              </p>
+              <p className="about-layout__closing">Viví la montaña a tu ritmo.</p>
+              <a
+                className="about-layout__cta"
+                href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
+                target="_blank"
+                rel="noreferrer"
+              >
+                Consultá disponibilidad y reservá tu lugar.
+              </a>
+            </div>
+
+            <div className="about-layout__carousel reveal">
+              <ImageCarousel
+                slides={aboutSlides}
+                intervalMs={4200}
+                className="about-carousel"
+                slideClassName="about-carousel__slide"
+                onOpen={openLightbox}
+              />
+            </div>
+          </div>
+        </section>
+
         <section className="section section--light" id="habitaciones">
           <div className="container">
             <SectionHeading
@@ -262,7 +380,7 @@ export default function Page() {
             <div className="room-grid">
               {rooms.map((room) => (
                 <article className="room-card reveal" key={room.title}>
-                  <RoomCarousel slides={room.slides} title={room.title} />
+                  <RoomCarousel slides={room.slides} title={room.title} onOpen={openLightbox} />
                   <div className="room-card__body">
                     <h3>{room.title}</h3>
                     <p>{room.copy}</p>
@@ -274,8 +392,8 @@ export default function Page() {
         </section>
 
         <section className="section section--earth" id="servicios">
-          <div className="container services-layout">
-            <div className="service-block reveal">
+          <div className="container">
+            <div className="service-block service-block--plain reveal">
               <p className="eyebrow">Comodidad simple</p>
               <h2>Servicios incluidos</h2>
               <p>Buscamos que tu estadía sea cómoda y simple desde el primer momento.</p>
@@ -288,14 +406,30 @@ export default function Page() {
                 ))}
               </ul>
             </div>
+          </div>
+        </section>
 
-            <div className="service-block service-block--accent reveal" id="experiencias">
+        <section className="section section--light" id="experiencias">
+          <div className="container">
+            <div className="service-block service-block--accent reveal">
               <p className="eyebrow">A medida de tu viaje</p>
               <h2>Experiencias opcionales</h2>
               <p>Si querés llevar tu experiencia un paso más allá, podés sumar:</p>
               <div className="experience-grid">
                 {optionalExperiences.map((experience) => (
-                  <article className="experience-card" key={experience.title}>
+                  <article
+                    className="experience-card"
+                    key={experience.title}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => openLightbox({ src: experience.src, alt: experience.title })}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        openLightbox({ src: experience.src, alt: experience.title });
+                      }
+                    }}
+                  >
                     <img src={experience.src} alt={experience.title} />
                     <div className="experience-card__body">
                       <h3>{experience.title}</h3>
@@ -311,10 +445,29 @@ export default function Page() {
 
         <section className="section section--light" id="ubicacion">
           <div className="container split-layout">
-            <div className="split-layout__media reveal">
+            <div
+              className="split-layout__media reveal"
+              role="button"
+              tabIndex={0}
+              onClick={() =>
+                openLightbox({
+                  src: "/assets/header/header-7.jpg",
+                  alt: "Vista aérea del barrio y paisaje patagónico",
+                })
+              }
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  openLightbox({
+                    src: "/assets/header/header-7.jpg",
+                    alt: "Vista aérea del barrio y paisaje patagónico",
+                  });
+                }
+              }}
+            >
               <img
-                src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1400&q=80"
-                alt="Paisaje de montaña y bosque patagónico"
+                src="/assets/header/header-7.jpg"
+                alt="Vista aérea del barrio y paisaje patagónico"
               />
             </div>
 
@@ -388,6 +541,35 @@ export default function Page() {
           </div>
         </section>
       </main>
+
+      <footer className="footer">
+        <div className="container footer__inner">
+          <a className="footer__brand" href="#inicio" aria-label="Volver al inicio">
+            <img src="/assets/logo.svg" alt="La Posada" />
+          </a>
+
+          <div className="footer__socials" aria-label="Redes sociales">
+            <a className="footer__social" href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="4" ry="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                <circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" strokeWidth="1.8" />
+                <circle cx="16.8" cy="7.2" r="1.1" fill="currentColor" />
+              </svg>
+            </a>
+
+            <a className="footer__social" href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14.2 8.2H16V5.4h-1.8c-2.2 0-3.8 1.4-3.8 4v1.8H8.1v2.8h2.3V19h2.8v-5h2.3l.4-2.8h-2.7V9.8c0-.9.3-1.6 1.4-1.6Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </a>
+          </div>
+
+          <p className="footer__copy">Estancia Miralejos · San Martín de los Andes, Neuquén, Argentina</p>
+        </div>
+      </footer>
     </>
   );
 }
