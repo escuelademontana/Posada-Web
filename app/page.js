@@ -10,6 +10,7 @@ const aboutSlides = [
   { src: "/assets/header/header-4.jpg", alt: "Paisaje patagónico desde La Posada al atardecer" },
   { src: "/assets/header/header-5.jpg", alt: "Chimenea encendida con vista al paisaje de la posada" },
   { src: "/assets/header/header-6.jpg", alt: "Grupo disfrutando el atardecer en la terraza de La Posada" },
+  { src: "/assets/header/header-8.jpg", alt: "Desayuno servido con café, frutas y medialunas" },
 ];
 
 const rooms = [
@@ -49,7 +50,7 @@ const includedServices = [
 const optionalExperiences = [
   {
     title: "Servicio de transfer 4x4",
-    copy: "Una forma cómoda y segura de moverte por caminos de montaña y llegar a cada experiencia con tranquilidad.",
+    copy: "Una forma cómoda y segura de moverte por caminos de montaña y llegar a cada destino con tranquilidad.",
     src: "/assets/experiences/transfer-4x4.jpg",
   },
   {
@@ -279,7 +280,7 @@ export default function Page() {
                 Servicios
               </a>
             </div>
-            <a className="top-nav__brand" href="#inicio" aria-label="Volver al inicio">
+            <a className="top-nav__brand" href="#sobre-la-posada" aria-label="Ir a la información sobre la posada">
               <img src="/assets/logo.svg" alt="La Posada" />
             </a>
             <button
@@ -323,7 +324,7 @@ export default function Page() {
             </p>
             <a
               className="button button--outline"
-              href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
+              href="https://wa.me/542944304892?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
               target="_blank"
               rel="noreferrer"
             >
@@ -341,15 +342,15 @@ export default function Page() {
               <p className="eyebrow">Sobre la Posada</p>
               <h2>Una forma distinta de tomarse una pausa</h2>
               <p>
-                Con solo seis habitaciones, la experiencia es íntima y sin masividad. Cada espacio invita a quedarse, a bajar el ritmo y a disfrutar del paisaje sin apuro.
+                Con solo seis habitaciones, la experiencia es íntima y sin masividad. Cada espacio invita a quedarse, a disfrutar del paisaje y a habitar la montaña sin apuro.
               </p>
               <p>
                 Podés alojarte por habitación o reservar la posada completa, adaptándose tanto a escapadas personales como a estadías en grupo.
               </p>
-              <p className="about-layout__closing">Viví la montaña a tu ritmo.</p>
+              <p className="about-layout__closing">Viví la montaña a tu manera.</p>
               <a
                 className="about-layout__cta"
-                href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
+                href="https://wa.me/542944304892?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
                 target="_blank"
                 rel="noreferrer"
               >
@@ -374,7 +375,7 @@ export default function Page() {
             <SectionHeading
               eyebrow="Descanso con identidad"
               title="Habitaciones pensadas para descansar"
-              copy="Nuestras habitaciones combinan calidez, vistas abiertas y la tranquilidad del entorno natural. Cada espacio está diseñado para que puedas desconectar, descansar y disfrutar del ritmo de la montaña."
+              copy="Nuestras habitaciones combinan calidez, vistas abiertas y la tranquilidad del entorno natural. Cada espacio está diseñado para que puedas desconectar, descansar y disfrutar de la calma de la montaña."
             />
 
             <div className="room-grid">
@@ -396,7 +397,7 @@ export default function Page() {
             <div className="service-block service-block--plain reveal">
               <p className="eyebrow">Comodidad simple</p>
               <h2>Servicios incluidos</h2>
-              <p>Buscamos que tu estadía sea cómoda y simple desde el primer momento.</p>
+              <p>Buscamos que tu estadía sea cálida y cómoda desde el primer momento. Preparada para llegar, instalarte y empezar a disfrutar.</p>
               <ul className="icon-list">
                 {includedServices.map((service) => (
                   <li key={service.label}>
@@ -409,37 +410,41 @@ export default function Page() {
           </div>
         </section>
 
-        <section className="section section--light" id="experiencias">
+        <section className="section section--experiences" id="experiencias">
           <div className="container">
-            <div className="service-block service-block--accent reveal">
+            <div className="section-heading section-heading--center reveal">
               <p className="eyebrow">A medida de tu viaje</p>
               <h2>Experiencias opcionales</h2>
               <p>Si querés llevar tu experiencia un paso más allá, podés sumar:</p>
-              <div className="experience-grid">
-                {optionalExperiences.map((experience) => (
-                  <article
-                    className="experience-card"
-                    key={experience.title}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => openLightbox({ src: experience.src, alt: experience.title })}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter" || event.key === " ") {
-                        event.preventDefault();
-                        openLightbox({ src: experience.src, alt: experience.title });
-                      }
-                    }}
-                  >
-                    <img src={experience.src} alt={experience.title} />
-                    <div className="experience-card__body">
-                      <h3>{experience.title}</h3>
-                      <p>{experience.copy}</p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-              <p className="service-note">Te ayudamos a organizar cada detalle para que solo tengas que disfrutar.</p>
             </div>
+
+            <div className="experience-grid reveal">
+              {optionalExperiences.map((experience) => (
+                <article
+                  className="experience-card"
+                  key={experience.title}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openLightbox({ src: experience.src, alt: experience.title })}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      openLightbox({ src: experience.src, alt: experience.title });
+                    }
+                  }}
+                >
+                  <img src={experience.src} alt={experience.title} />
+                  <div className="experience-card__body">
+                    <h3>{experience.title}</h3>
+                    <p>{experience.copy}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <p className="service-note service-note--center reveal">
+              Te ayudamos a organizar cada detalle para que solo tengas que disfrutar.
+            </p>
           </div>
         </section>
 
@@ -501,9 +506,9 @@ export default function Page() {
         <section className="section section--forest" id="actividades">
           <div className="container">
             <SectionHeading
-              eyebrow="Todo el año"
-              title="Experiencias en la montaña todo el año"
-              copy="La montaña ofrece algo distinto en cada estación. Desde la posada podés vivir la naturaleza de múltiples formas."
+              eyebrow="TODO EL AÑO"
+              title="Cada estación tiene algo para sorprenderte"
+              copy="San Martín de los Andes ofrece algo distinto en cada estación. Desde la posada podés vivir la naturaleza de múltiples formas."
             />
 
             <div className="activities-grid">
@@ -532,7 +537,7 @@ export default function Page() {
             <p>Escribinos y te ayudamos a planificar tu estadía.</p>
             <a
               className="button button--primary"
-              href="https://wa.me/5490000000000?text=Hola%2C%20quiero%20consultar%20por%20mi%20estad%C3%ADa%20en%20La%20Posada."
+              href="https://wa.me/542944304892?text=Hola%2C%20quiero%20consultar%20por%20mi%20estad%C3%ADa%20en%20La%20Posada."
               target="_blank"
               rel="noreferrer"
             >
@@ -542,6 +547,16 @@ export default function Page() {
         </section>
       </main>
 
+      <a
+        className="whatsapp-float"
+        href="https://wa.me/542944304892?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Consultar por WhatsApp"
+      >
+        <img src="/assets/icons/wpp.svg" alt="" aria-hidden="true" />
+      </a>
+
       <footer className="footer">
         <div className="container footer__inner">
           <a className="footer__brand" href="#inicio" aria-label="Volver al inicio">
@@ -549,7 +564,7 @@ export default function Page() {
           </a>
 
           <div className="footer__socials" aria-label="Redes sociales">
-            <a className="footer__social" href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <a className="footer__social" href="https://www.instagram.com/laposadamiralejos/" target="_blank" rel="noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <rect x="4" y="4" width="16" height="16" rx="4" ry="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
                 <circle cx="12" cy="12" r="4.1" fill="none" stroke="currentColor" strokeWidth="1.8" />
