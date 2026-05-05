@@ -349,12 +349,12 @@ export default function Page() {
               </p>
               <p className="about-layout__closing">Viví la montaña a tu manera.</p>
               <a
-                className="about-layout__cta"
+                className="about-layout__cta button button--secondary"
                 href="https://wa.me/542944304892?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
                 target="_blank"
                 rel="noreferrer"
               >
-                Consultá disponibilidad y reservá tu lugar.
+                Reservar
               </a>
             </div>
 
@@ -508,23 +508,28 @@ export default function Page() {
             <SectionHeading
               eyebrow="TODO EL AÑO"
               title="Cada estación tiene algo para sorprenderte"
-              copy="San Martín de los Andes ofrece algo distinto en cada estación. Desde la posada podés vivir la naturaleza de múltiples formas."
+              copy="San Martín de los Andes ofrece algo distinto en cada momento del año. Desde la posada podés vivir la naturaleza de múltiples formas."
             />
 
             <div className="activities-grid">
               <article className="activity-card reveal">
-                <span className="activity-card__season">Invierno</span>
-                <p>A solo 30 minutos del Cerro Chapelco, ideal para esquí y snowboard. También caminatas en la nieve y paisajes únicos.</p>
-              </article>
-
-              <article className="activity-card reveal">
                 <span className="activity-card__season">Verano</span>
-                <p>Senderismo, miradores, lagos y actividades al aire libre en un entorno natural privilegiado.</p>
+                <p>Senderismo, miradores, lagos, cielos estrellados y actividades al aire libre. La Patagonia en su máximo esplendor.</p>
               </article>
 
               <article className="activity-card reveal">
-                <span className="activity-card__season">Todo el año</span>
-                <p>Espacios para descansar, reconectar y disfrutar del ritmo de la montaña.</p>
+                <span className="activity-card__season">Otoño</span>
+                <p>El bosque toma protagonismo y se llena de color. Salir a caminar para sumergirse entre Lengas hace que respirar el aire de otoño sea único.</p>
+              </article>
+
+              <article className="activity-card reveal">
+                <span className="activity-card__season">Invierno</span>
+                <p>A solo 30 minutos del Cerro Chapelco por un camino interno, es ideal para venir a hacer esquí y snowboard. También podés disfrutar de la nieve sin salir de Miralejos.</p>
+              </article>
+
+              <article className="activity-card reveal">
+                <span className="activity-card__season">Primavera</span>
+                <p>Las flores invaden nuestro barrio y el clima mejora, permitiendo disfrutar del lugar en uno de los entornos más privilegiados.</p>
               </article>
             </div>
           </div>
