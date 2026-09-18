@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 
 export const metadata = {
   title: "La Posada | Hostería de montaña en San Martín de los Andes",
@@ -9,7 +10,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script src="https://app.hospedarmas.com/embed.js" strategy="afterInteractive" />
+      </body>
     </html>
   );
 }

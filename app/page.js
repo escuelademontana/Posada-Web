@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+const HOSPEDAR_SLUG = "laposadamiralejos";
+
 const headerSlides = [{ src: "/assets/header/header-2.jpg", alt: "Vista del paisaje desde La Posada" }];
 
 const aboutSlides = [
@@ -322,14 +324,23 @@ export default function Page() {
             <p>
               En la Estancia Miralejos, a 30 minutos de San Martín de los Andes, te esperamos con vistas únicas, tranquilidad y una experiencia auténtica en la Patagonia.
             </p>
-            <a
-              className="button button--outline"
-              href="https://wa.me/542944304892?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
-              target="_blank"
-              rel="noreferrer"
+            <button
+              className="button button--outline reservation-button"
+              type="button"
+              data-hm-motor={HOSPEDAR_SLUG}
+              data-color="#566045"
+              data-unit-noun="habitacion"
             >
-              CONSULTAR DISPONIBILIDAD
-            </a>
+              RESERVAR AHORA
+            </button>
+          </div>
+          <div className="hero__booking">
+            <div
+              data-hm-searchbox={HOSPEDAR_SLUG}
+              data-color="#566045"
+              data-theme="light"
+              data-unit-noun="habitacion"
+            />
           </div>
         </div>
 
@@ -348,14 +359,15 @@ export default function Page() {
                 Podés alojarte por habitación o reservar la posada completa, adaptándose tanto a escapadas personales como a estadías en grupo.
               </p>
               <p className="about-layout__closing">Viví la montaña a tu manera.</p>
-              <a
+              <button
                 className="about-layout__cta button button--secondary"
-                href="https://wa.me/542944304892?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20La%20Posada."
-                target="_blank"
-                rel="noreferrer"
+                type="button"
+                data-hm-motor={HOSPEDAR_SLUG}
+                data-color="#566045"
+                data-unit-noun="habitacion"
               >
                 Reservar
-              </a>
+              </button>
             </div>
 
             <div className="about-layout__carousel reveal">
@@ -539,15 +551,16 @@ export default function Page() {
           <div className="container cta-card reveal">
             <p className="eyebrow">Tu próxima escapada</p>
             <h2>Viví una experiencia de Montaña en La Posada</h2>
-            <p>Escribinos y te ayudamos a planificar tu estadía.</p>
-            <a
+            <p>Elegí tus fechas y reservá tu estadía en pocos pasos.</p>
+            <button
               className="button button--primary"
-              href="https://wa.me/542944304892?text=Hola%2C%20quiero%20consultar%20por%20mi%20estad%C3%ADa%20en%20La%20Posada."
-              target="_blank"
-              rel="noreferrer"
+              type="button"
+              data-hm-motor={HOSPEDAR_SLUG}
+              data-color="#566045"
+              data-unit-noun="habitacion"
             >
-              Consultar por WhatsApp
-            </a>
+              Reservar ahora
+            </button>
           </div>
         </section>
       </main>

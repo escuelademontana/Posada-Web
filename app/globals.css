@@ -48,15 +48,16 @@ a {
 
 .hero {
   position: relative;
+  z-index: 5;
   color: var(--white);
   display: block;
-  overflow: clip;
+  overflow: visible;
 }
 
 .hero__media {
   position: relative;
   min-height: 100svh;
-  overflow: clip;
+  overflow: visible;
 }
 
 .hero__slides,
@@ -315,6 +316,20 @@ a {
   letter-spacing: 0.08em;
 }
 
+.hero__booking {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(2rem, 6vh, 4.75rem);
+  z-index: 20;
+  width: min(920px, calc(100% - 2rem));
+  min-height: 82px;
+  transform: translateX(-50%);
+}
+
+.hero__booking > div {
+  width: 100%;
+}
+
 .hero__content-wrap {
   display: none;
 }
@@ -391,8 +406,11 @@ a {
   justify-content: center;
   min-height: 54px;
   padding: 0.95rem 1.5rem;
+  border: 0;
   border-radius: var(--radius-sm);
+  font: inherit;
   font-weight: 700;
+  cursor: pointer;
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
@@ -410,6 +428,16 @@ a {
   border: 1.5px solid rgba(86, 96, 69, 0.34);
   background: transparent;
   color: var(--forest-deep);
+}
+
+.reservation-button {
+  text-transform: uppercase;
+}
+
+@media (min-width: 721px) {
+  .hero__headline .reservation-button {
+    display: none;
+  }
 }
 
 .hero__content .button--primary {
@@ -1224,6 +1252,11 @@ a {
     top: 40%;
   }
 
+  .hero__booking {
+    bottom: 2rem;
+    width: min(720px, calc(100% - 1.5rem));
+  }
+
   .intro-carousel {
     min-height: 46vh;
     transform: none;
@@ -1305,7 +1338,7 @@ a {
   }
 
   .hero__headline {
-    top: 24%;
+    top: 22%;
     left: 0;
     right: 0;
     width: min(96vw, 600px);
@@ -1340,8 +1373,14 @@ a {
     white-space: nowrap;
   }
 
+  .hero__booking {
+    bottom: 1rem;
+    width: calc(100% - 1rem);
+    min-height: 168px;
+  }
+
   .hero__media {
-    min-height: 108svh;
+    min-height: 112svh;
   }
 
   .hero__slides--single .hero__slide {
@@ -1377,6 +1416,10 @@ a {
 
   .footer__brand img {
     width: min(220px, 56vw);
+  }
+
+  .whatsapp-float {
+    bottom: 10rem;
   }
 
   .about-layout__content {
